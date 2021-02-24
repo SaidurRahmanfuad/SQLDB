@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,7 @@ import com.saidur.sqldb.model.Farmer;
 import java.util.ArrayList;
 
 public class AllFarmerAdapter extends RecyclerView.Adapter<AllFarmerAdapter.MyViewHolder> {
-    ArrayList<Farmer> farmerArrayList=new ArrayList<>();
+    ArrayList<Farmer> farmerArrayList;
     Context context;
 
     public AllFarmerAdapter(ArrayList<Farmer> farmerArrayList, Context context) {
@@ -28,8 +27,8 @@ public class AllFarmerAdapter extends RecyclerView.Adapter<AllFarmerAdapter.MyVi
     @Override
     public AllFarmerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View v= LayoutInflater.from(context).inflate(R.layout.rec_model_allfarmer,parent,false);
-      MyViewHolder mvh=new MyViewHolder(v);
-        return mvh;
+       //MyViewHolder mvh=new MyViewHolder(v);
+        return new MyViewHolder(v);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class AllFarmerAdapter extends RecyclerView.Adapter<AllFarmerAdapter.MyVi
         return farmerArrayList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView frid,frname,frfname,frstatus;
         public MyViewHolder(@NonNull View iv) {
             super(iv);

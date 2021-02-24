@@ -15,7 +15,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     private static final String DatabaseName = "farmar.db";
     private static final String TableFarmer = "farmar_table";
     private static final String TableFarmerDistrict = "district_table";
-    private static final int VersionNumber = 1;
+    private static final int VersionNumber = 2;
     //farmer table column name
     private static final String FID = "_id";
     private static final String NAME = "_name";
@@ -96,13 +96,13 @@ public class MyDbHelper extends SQLiteOpenHelper {
         long rowId = sqLiteDatabase.insert(TableFarmer, null, cv);
         return rowId;
     }*/
-
+//show all district data
     public Cursor show_AllDistrict_Data() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cursor=sqLiteDatabase.rawQuery(alldistrict_dataquery, null);
     return cursor;
     }
-
+//show all farmer data
     public Cursor show_AllFarmer_Data() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
       Cursor cursor = sqLiteDatabase.rawQuery(allfarmer_dataquery, null);
@@ -113,4 +113,13 @@ public class MyDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.rawQuery("Select * from "+TableFarmer+" Where "+NAME+" =?", new String[] {NAME});
     }*/
+
+  //delete data
+    public Integer deleteFarmer(String id)
+    {
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+       return sqLiteDatabase.delete(TableFarmer,FID+" = ?",new String[] {id});
+
+    }
+
 }
